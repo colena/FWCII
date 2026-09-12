@@ -4,6 +4,7 @@ Run with: python -m unittest -v test_reproduce
 The repository outputs and reference data are never overwritten.
 """
 import json
+import math
 import os
 from pathlib import Path
 import shutil
@@ -103,6 +104,48 @@ class ReproductionTests(unittest.TestCase):
         self.assertAlmostEqual(self.report["spectral"][0]["p"], 0.5, delta=1e-12)
         self.assertLess(self.report["gaussian_coefficient_formula_error"], 1e-12)
         np.testing.assert_allclose(self.report["spectral"][0]["alpha"], np.arange(34), atol=1e-12)
+
+    def test_paper_section_6_4(self):
+        # Values transcribed from Section 6.4 (p. 20) of the bundled FINAL PDF.
+        # The paper displays three significant figures; compare at that precision.
+        reference = json.loads((Path(__file__).resolve().parent / "reference" / "results.json").read_text())
+        printed = {
+            "shared_error": "1.17e-04", "independent_error": "5.94e-05",
+            "shared_bound": "3.56e-04", "independent_bound": "2.36e-04",
+        }
+        for name, report in (("reference", reference), ("fresh run", self.report)):
+            with self.subTest(source=name):
+                self.assertEqual(report["parameters"]["m"], 2)
+                self.assertEqual(report["parameters"]["tau"], 0.5)
+                self.assertEqual(report["parameters"]["N"], 32)
+                self.assertEqual([row["mu"] for row in report["spectral"][:2]], [1.0, 0.5])
+                self.assertEqual(report["figure"]["time_range"], [1.0, 1e5])
+                row = next(row for row in report["truncation"] if row["N"] == 32)
+                for key, expected in printed.items():
+                    self.assertEqual(format(row[key], ".2e"), expected, key)
+
+    def test_full_reference_consistency(self):
+        reference = json.loads((Path(__file__).resolve().parent / "reference" / "results.json").read_text())
+
+        def compare(expected, actual, path=""):
+            if path == "versions":
+                return  # Runtime metadata may differ without changing the calculation.
+            if isinstance(expected, dict):
+                self.assertEqual(expected.keys(), actual.keys(), path)
+                for key in expected:
+                    compare(expected[key], actual[key], f"{path}.{key}" if path else key)
+            elif isinstance(expected, list):
+                self.assertEqual(len(expected), len(actual), path)
+                for index, (left, right) in enumerate(zip(expected, actual)):
+                    compare(left, right, f"{path}[{index}]")
+            elif isinstance(expected, (int, float)):
+                self.assertTrue(math.isfinite(actual), path)
+                self.assertTrue(math.isclose(expected, actual, rel_tol=1e-8, abs_tol=1e-11),
+                                f"{path}: reference={expected}, actual={actual}")
+            else:
+                self.assertEqual(expected, actual, path)
+
+        compare(reference, self.report)
 
     def test_truncation_bounds(self):
         rows = self.report["truncation"]

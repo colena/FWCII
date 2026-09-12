@@ -4,6 +4,20 @@ Reproduce the numerical comparison of collective threshold covariances under a s
 
 The calculation uses two coordinates (`m = 2`), clock order `tau = 1/2`, deformation parameters `mu = 1, 1/2, 3/7`, and 32 retained positive modes per coordinate. The numerical methods use floating-point arithmetic; they are not interval-certified calculations.
 
+## Associated paper and reference
+
+This code accompanies the paper by **Elena Boguslavskaya and Elina Shishkina**:
+
+> *Fractional Wiener chaos: Part 2. Interface spectral chaos and decay of collective correlations.* Manuscript supplied with this repository; PDF snapshot compiled on 12 September 2026. [Read the paper](fractional_wiener_chaos_II_FINAL.pdf).
+
+The paper constructs an interface spectral basis and uses it to compare how a centred product of threshold observations retains correlation with its initial value under shared and independent inverse stable clocks. This repository implements that numerical example: **Section 6, especially Section 6.4 (page 20), and Figure 1 (page 21)**. 
+
+The boundary-flux coefficients implement equation (18); the shared and independent covariance sums implement equation (21); `amplitudes()` implements the `m = 2`, `tau = 1/2` case of equation (22); and the truncation estimates implement equation (24). The figure uses `mu = 1` and `mu = 1/2`. The additional `mu = 3/7` calculation checks a nodal interface mode and is not a third plotted case. The code reproduces this numerical application, rather than every analytical construction or parameter range studied in the paper.
+
+When referring to these numerical results, cite the paper using the authors and title above and identify the version of this repository used. 
+
+**Paper/results consistency:** the input parameters, covariance normalization, decay powers, and all four printed error/bound values in Section 6.4 agree with `reference/results.json` and a fresh run. The paper rounds these four numbers to three significant figures. The figure displays normalized correlations, while the benchmark errors and bounds are unnormalized covariances. See [PAPER_CONSISTENCY.md](PAPER_CONSISTENCY.md) for the comparison and its scope.
+
 ## Quick start
 
 Download or clone this repository, then open a terminal in its root directory. Use **Python 3.12** for the tested environment.
@@ -66,10 +80,11 @@ The suite runs the complete reproduction in a temporary directory, from a differ
 - Cutoff sensitivity and the nodal case `mu = 3/7`.
 - Long-time amplitudes and scaled covariance convergence through `t = 1,000,000`.
 - Small Gaussian spectra for `N = 1` through `8`, and deformed spectra for `N = 1, 4, 6, 7, 8`.
+- Agreement with the input parameters and four rounded numerical values in the paper's Section 6.4, and a recursive comparison of fresh results with the full stored reference.
 
 Tests preserve both `reference/` and any existing `outputs/`. Temporary outputs are deleted after testing. The numerical tolerances are regression checks rather than certified error bounds.
 
-Validated on 12 September 2026 with Python 3.12.14 on macOS (Apple silicon) and the pinned dependencies: all nine tests passed, including the full numerical reproduction, with zero recorded quadrature warnings. Windows and Linux instructions are provided but were not tested in this environment.
+Validated on 12 September 2026 with Python 3.12.14 on macOS (Apple silicon) and the pinned dependencies: all eleven tests passed, including the paper consistency checks and full numerical reproduction, with zero recorded quadrature warnings. Windows and Linux instructions are provided but were not tested in this environment.
 
 ## Expected numerical results
 
@@ -90,6 +105,8 @@ The expected threshold probabilities are approximately `0.5`, `0.696491311248`, 
 ```text
 collective-threshold-relaxation/
 ├── README.md
+├── PAPER_CONSISTENCY.md
+├── fractional_wiener_chaos_II_FINAL.pdf
 ├── LICENSE
 ├── requirements.txt
 ├── reproduce.py
