@@ -1,36 +1,153 @@
-# Fractional Wiener Chaos II: numerical reproduction
+# Collective threshold relaxation
 
-This directory reproduces the reciprocal-Gamma eigenvalues, stochastic Galerkin benchmark, Table 1 diagnostics, and Figure 1 for the manuscript **Fractional Wiener Chaos II: Fixed-µ Interface Spectral Chaos and Ground-State Fractional Calculus**.
+Reproduce the numerical comparison of collective threshold covariances under a shared inverse half-stable clock and independent clocks. This standalone research code computes interface spectra, covariance sums, truncation estimates, Gaussian benchmarks, long-time amplitudes, and a two-panel figure.
 
-## Method
+The calculation uses two coordinates (`m = 2`), clock order `tau = 1/2`, deformation parameters `mu = 1, 1/2, 3/7`, and 32 retained positive modes per coordinate. The numerical methods use floating-point arithmetic; they are not interval-certified calculations.
 
-The code uses the Schrödinger representation
+## Quick start
 
-\[
-u_k(x)=w_1(x)^{1/2}e_k^{(\mu)}(x).
-\]
+Download or clone this repository, then open a terminal in its root directory. Use **Python 3.12** for the tested environment.
 
-so Gaussian inner products of the interface eigenfunctions become ordinary Lebesgue integrals. The characteristic roots are found by bracketing zeros of \(\Delta_\mu\). The matching coefficients are obtained from the numerical nullspace of the two-by-two transmission matrix. All half-line integrals use adaptive Gauss-Kronrod quadrature. The default computation uses tolerance `5e-13` and cutoff `24`; the test suite repeats the calculation at different tolerances and cutoffs.
+On macOS or Linux:
 
-## Reproduce the outputs
-
-```bash
-python -m venv .venv
+```sh
+python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python reproduce.py --output-dir reference
-pytest -q
+python reproduce.py
 ```
 
-For the exact environment used to generate the archived reference output, install
-`requirements-lock.txt` instead.  A GitHub Actions workflow runs the tests on
-Python 3.11 and 3.13.
+On Windows, using PowerShell:
 
-Generated files:
+```powershell
+py -3.12 -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe reproduce.py
+```
 
-- `reference/galerkin_errors.csv`
-- `reference/reference_output.json`
-- `reference/Fig1.pdf`
-- `reference/Fig1.png`
+The script prints a summary and creates `outputs/` inside the repository. Open `outputs/figures/collective_clocks.png` to view the figure, or `outputs/numerical_report.md` for the numerical report.
 
-The code was tested with Python 3.13, NumPy 2.3, SciPy 1.17, Matplotlib 3.10, and pytest 9.0.
+Only Python, NumPy, SciPy, and Matplotlib are required. No manuscript files, LaTeX installation, external dataset, account, or network connection is needed after installing dependencies. Matplotlib uses the headless `Agg` backend, so a graphical desktop is not required.
+
+## Outputs
+
+Every run overwrites these generated files, all relative to the repository root:
+
+| File | Contents |
+| --- | --- |
+| `outputs/results.json` | Parameters, versions, spectra, coefficients, diagnostics, benchmarks, amplitudes, and figure metadata |
+| `outputs/results.txt` | Concise numerical summary |
+| `outputs/numerical_report.md` | Standalone report with benchmark and diagnostic tables and a linked figure |
+| `outputs/figures/collective_clocks.pdf` | Vector figure |
+| `outputs/figures/collective_clocks.png` | Raster figure |
+
+Output paths are resolved relative to `reproduce.py`, so the script can also be launched from another working directory using its full path. The repository must be writable. Generated outputs are ignored by Git; the original numerical reference in `reference/results.json` is kept separately and is never overwritten by the script.
+
+## Tests
+
+With the virtual environment activated, run:
+
+```sh
+python -m unittest -v test_reproduce
+```
+
+On Windows without activation:
+
+```powershell
+.venv\Scripts\python.exe -m unittest -v test_reproduce
+```
+
+The suite runs the complete reproduction in a temporary directory, from a different working directory, and checks:
+
+- Generation of the report, numerical files, and both figure formats inside the standalone folder.
+- Gaussian probabilities, spectra, coefficient formulas, and covariance reference values.
+- Decreasing truncation errors for `N = 4, 8, 16, 32`, within the estimated remainder bounds.
+- Ordered spectra, positive gaps, coefficient mass, interface matching, Gram matrices, and direct coefficient quadrature.
+- Cutoff sensitivity and the nodal case `mu = 3/7`.
+- Long-time amplitudes and scaled covariance convergence through `t = 1,000,000`.
+- Small Gaussian spectra for `N = 1` through `8`, and deformed spectra for `N = 1, 4, 6, 7, 8`.
+
+Tests preserve both `reference/` and any existing `outputs/`. Temporary outputs are deleted after testing. The numerical tolerances are regression checks rather than certified error bounds.
+
+Validated on 12 September 2026 with Python 3.12.14 on macOS (Apple silicon) and the pinned dependencies: all nine tests passed, including the full numerical reproduction, with zero recorded quadrature warnings. Windows and Linux instructions are provided but were not tested in this environment.
+
+## Expected numerical results
+
+For the Gaussian case (`mu = 1`) at `t = 1`:
+
+| Quantity | Shared clock | Independent clocks |
+| --- | --- | --- |
+| Independent quadrature benchmark | 0.0150734676645 | 0.0125986424004 |
+| Absolute error with 32 modes | 1.16519e-4 | 5.93549e-5 |
+| Estimated truncation bound | 3.56009e-4 | 2.36452e-4 |
+
+The expected threshold probabilities are approximately `0.5`, `0.696491311248`, and `0.734484032950` for `mu = 1, 1/2, 3/7`, respectively. Successful reference runs record zero quadrature warnings. Small changes in the last digits of numerical diagnostics can occur across platforms.
+
+`reference/results.json` contains the original numerical reference produced with Python 3.12.13, NumPy 2.3.5, SciPy 1.17.0, and Matplotlib 3.10.8. `requirements.txt` pins those three direct numerical dependencies; pip resolves their transitive dependencies. Each fresh run records its actual versions in `outputs/results.json`.
+
+## Repository contents
+
+```text
+collective-threshold-relaxation/
+├── README.md
+├── LICENSE
+├── requirements.txt
+├── reproduce.py
+├── interface_modes.py
+├── test_reproduce.py
+├── .gitignore
+└── reference/
+    └── results.json
+```
+
+`reproduce.py` implements the spectral data, covariance sums, Gaussian benchmark, asymptotic coefficients, figure, and report. `interface_modes.py` supplies the reciprocal-Gamma characteristic equation, root scan, interface matching, and half-line mode normalisation. `test_reproduce.py` uses Python's standard `unittest` library, so no additional test framework is required.
+
+## Numerical procedure
+
+1. At `mu = 1`, use the exact integer spectrum. For the deformed parameters, scan the characteristic determinant on 12,001 points and refine sign changes with Brent iteration. Include the ground mode, 32 positive modes, and the first omitted mode. The nodal interface case is retained.
+2. Evaluate parabolic-cylinder functions by recurrence from nonpositive orders. Normalise modes with half-line quadrature to cutoff 24, and check the first nine-mode Gram matrix, matching residuals, and direct versus boundary-flux threshold coefficients. Repeat at cutoff 18 for `mu = 1/2`.
+3. Evaluate the half-stable clock multiplier as `erfcx(lambda * sqrt(t) / 2)`. Use sums of product energies for the shared clock and multiply one-coordinate responses for independent clocks.
+4. Compare Gaussian covariances against operational-time integration of the exact arcsine threshold covariance and inverse half-stable density. This benchmark does not use the cylinder functions or root scan.
+5. Plot normalised covariances over `1 <= t <= 100000` for `mu = 1` and `mu = 1/2`. Record scaled long-time checks through `t = 1000000` for all three parameters.
+
+Both plotted covariances are divided by `[p_mu * (1 - p_mu)]^2`. Shared-clock covariances decay as `t^(-1/2)`; independent-clock covariances decay as `t^(-1)`. The exact Gaussian independent-clock amplitude is `(log(2))^2 / (4*pi)`.
+
+The shaded bands account for omitted spectral contributions using approximate numerical inputs. They do not enclose errors in roots, special functions, or quadrature. Root completeness is not certified. The code supports numerical reproduction of the research calculation, not a replacement for its analytical proofs.
+
+## Using the functions
+
+Run this example from the repository root in the activated environment:
+
+```python
+from reproduce import spectral_data, covariances, amplitudes
+
+N = 4
+spectrum = spectral_data(mu=1.0, N=N)
+shared, independent, shared_bound, independent_bound = covariances(
+    spectrum, t=[1.0, 100.0, 10000.0], N=N
+)
+long_time = amplitudes(spectrum, N=N)
+```
+
+Pass the same `N` to the consuming functions: their defaults are 32. `N` represents a positive integer count of retained modes. The Gram diagnostic checks up to the first nine available modes, including the ground and first omitted modes; it also works when fewer than nine modes are available.
+
+The complete reproduction has fixed parameters in `main()` and no command-line options. Its benchmark, report, and figure are written for the supplied `m = 2`, `tau = 1/2` experiment.
+
+To rebuild only the Markdown report from the original reference, without recomputing spectra or figures:
+
+```sh
+python -c 'import json; from pathlib import Path; from reproduce import write_reports; write_reports(json.loads(Path("reference/results.json").read_text()))'
+```
+
+This creates `outputs/numerical_report.md`; its figure link becomes available after a full reproduction run.
+
+## Troubleshooting
+
+- **Missing Python package:** use the same virtual-environment interpreter for installation and execution. `python -m pip check` checks installed dependency compatibility.
+- **Output permission error:** move the repository to a writable directory, since outputs are stored beside the script under `outputs/`.
+- **Unwritable Matplotlib cache:** set `MPLCONFIGDIR` to a writable directory. For example, on macOS/Linux, run `MPLCONFIGDIR=.matplotlib python reproduce.py`.
+- **Numerical differences:** compare the benchmark errors with their bounds and run the tests. Exact byte-for-byte agreement of floating-point results or figure files across platforms is not expected.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).

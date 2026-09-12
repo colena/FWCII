@@ -1,0 +1,17 @@
+# Local Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.matplotlib/
+.cache/
+
+# Regenerated outputs (reference/ is intentionally tracked)
+outputs/
+
+# OS/editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
