@@ -166,7 +166,7 @@ The construction and its operator-domain results are developed in Sections 2-5 o
 
 <a id="interface-spectrum"></a>
 
-Work at Gaussian variance one, with $`\gamma(\mathrm{d}x)=w_1(x)\,\mathrm{d}x`$, $`w_1(x)=(2\pi)^{-1/2}e^{-x^2/2}`$. Let $`e_k^{(\mu)}`$ be the $`L^2(\gamma)`$-normalised interface eigenfunctions, with ordered eigenvalues $`\alpha_k(\mu)`$ and strictly positive ground state $`e_0^{(\mu)}`$. Set $`\lambda_k(\mu)=\alpha_k(\mu)-\alpha_0(\mu)`$, so $`\lambda_0=0`$ and $`\lambda_1>0`$. The branch orders and characteristic equation are
+Work at Gaussian variance one, with $`\gamma(\mathrm{d}x)=w_1(x)\,\mathrm{d}x`$, $`w_1(x)=(2\pi)^{-1/2}e^{-x^2/2}`$. Let $`e_k^{(\mu)}`$ be the $`L^2(\gamma)`$-normalised interface eigenfunctions, with ordered eigenvalues $`\alpha_k(\mu)`$ and strictly positive ground state $`e_0^{(\mu)}`$. Set $`\lambda_k(\mu)=\alpha_k(\mu)-\alpha_0(\mu)`$, so $`\lambda_0=0`$ and $`\lambda_1\gt 0`$. The branch orders and characteristic equation are
 
 ```math
 \beta_\mu(\alpha)=\mu\alpha-\frac{1-\mu}{2},\qquad
@@ -203,7 +203,7 @@ These products form the orthonormal basis of $`L^2(\mathbb P_\mu)`$, where $`\ma
 
 <a id="one-coordinate-evolution"></a>
 
-Here $`E_\tau(z)=\sum_{n\geq0}z^n/\Gamma(1+\tau n)`$ is the Mittag-Leffler function, whereas $`E_t^{(\tau)}`$ denotes an inverse stable clock; the different argument and index distinguish them. For $`0<\tau<1`$, the one-coordinate Caputo evolution $`{}^CD_t^\tau u=-N_\mu u/2`$ has spectral multipliers $`E_\tau[-t^\tau\lambda_k(\mu)/2]`$. Its product-space counterpart is stated below. Norms in the application refer to the relevant one-coordinate or product $`L^2`$ probability space.
+Here $`E_\tau(z)=\sum_{n\geq0}z^n/\Gamma(1+\tau n)`$ is the Mittag-Leffler function, whereas $`E_t^{(\tau)}`$ denotes an inverse stable clock; the different argument and index distinguish them. For $`0\lt \tau\lt 1`$, the one-coordinate Caputo evolution $`{}^CD_t^\tau u=-N_\mu u/2`$ has spectral multipliers $`E_\tau[-t^\tau\lambda_k(\mu)/2]`$. Its product-space counterpart is stated below. Norms in the application refer to the relevant one-coordinate or product $`L^2`$ probability space.
 
 <a id="observation"></a>
 
@@ -211,7 +211,7 @@ Here $`E_\tau(z)=\sum_{n\geq0}z^n/\Gamma(1+\tau n)`$ is the Mittag-Leffler funct
 
 We use the [product spectral chaos](#spectral-background) to compute how a collective threshold observation retains correlation with its initial value. The [boundary-flux identity (B3)](#threshold-coefficients) supplies the coefficients, the product eigenvalues $`\Lambda_{\mathbf k}(\mu)`$ from [product basis (B2)](#product-basis) and the product-basis theorem in the main manuscript (Section 3) determine their evolution, and the omitted coefficient mass bounds the truncation error. Shared and independent inverse clocks provide two dynamics to which the same expansion applies.
 
-Fix $`0<\mu\leq1`$, $`0<\tau<1`$ and an integer $`m\geq2`$. The parameter $`\mu`$ determines the equilibrium law $`\nu_\mu`$ and the eigenfunctions $`r_k^{(\mu)}`$
+Fix $`0\lt \mu\leq1`$, $`0\lt \tau\lt 1`$ and an integer $`m\geq2`$. The parameter $`\mu`$ determines the equilibrium law $`\nu_\mu`$ and the eigenfunctions $`r_k^{(\mu)}`$
 of $`N_\mu`$; $`\tau`$ determines the inverse stable waiting-time mechanism. For the probability $`p_\mu=\nu_\mu((0,\infty))`$, define the centred threshold and its collective product by
 
 ```math
@@ -226,7 +226,7 @@ they are on opposite sides, with magnitudes determined by $`p_\mu`$.
 Its correlation with the initial value measures persistence of this
 joint fluctuation. More generally, integrating out any coordinate
 makes $`F`$ vanish, so centring isolates the contribution involving all
-$`m`$ coordinates. We have $`0<p_\mu<1`$ and $`\|f\|_{L^2(\nu_\mu)}^2=p_\mu(1-p_\mu)`$.
+$`m`$ coordinates. We have $`0\lt p_\mu\lt 1`$ and $`\|f\|_{L^2(\nu_\mu)}^2=p_\mu(1-p_\mu)`$.
 
 Let
 
@@ -311,7 +311,7 @@ $`L^2`$-valued mild solution of
 
 The independent evolution agrees with the shared
 evolution for observations depending on only one
-coordinate. For $`0<\tau<1`$, it generally does not
+coordinate. For $`0\lt \tau\lt 1`$, it generally does not
 solve [product Caputo equation (C3)](#product-caputo) on product
 eigenfunctions containing two or more nonconstant factors.
 
@@ -336,7 +336,7 @@ The coefficients already computed at the interface are thus sufficient for every
 <a id="decay-theorem"></a>
 
 **Theorem (Decay of collective correlations).**
-For $`0<\mu\leq1`$, $`0<\tau<1`$, integers $`m\geq2`$ and nonzero real $`f\in L^2(\nu_\mu)`$, such that
+For $`0\lt \mu\leq1`$, $`0\lt \tau\lt 1`$, integers $`m\geq2`$ and nonzero real $`f\in L^2(\nu_\mu)`$, such that
 
 ```math
 \int_{-\infty}^\infty f(x)\nu_\mu(\mathrm{d}x)=0
@@ -345,7 +345,7 @@ For $`0<\mu\leq1`$, $`0<\tau<1`$, integers $`m\geq2`$ and nonzero real $`f\in L^
 we have
 
 ```math
-0<C_{\rm ind}(t)<C_{\rm sh}(t)\leq\|f\|_2^{2m},\qquad t>0.
+0\lt C_{\rm ind}(t)\lt C_{\rm sh}(t)\leq\|f\|_2^{2m},\qquad t\gt 0.
 ```
 
 The finite positive long-time limits are
@@ -382,9 +382,9 @@ C_{\rm sh}(t)=\mathbb{E}[c(E_t^{(\tau)})^m],\qquad
 C_{\rm ind}(t)=[\mathbb{E} c(E_t^{(\tau)})]^m.
 ```
 
-Invariance and Cauchy–Schwarz bound each absolute one-coordinate expectation by $`\|f\|_2^2`$, so these identities hold for the stated $`L^2`$ data. Tonelli gives [covariance series (C4)](#covariance-series); strict Jensen gives the comparison because the clock is nondegenerate for $`t>0`$ ([Meerschaert and Straka](#ref-meerschaert), Sections 2-3).
+Invariance and Cauchy–Schwarz bound each absolute one-coordinate expectation by $`\|f\|_2^2`$, so these identities hold for the stated $`L^2`$ data. Tonelli gives [covariance series (C4)](#covariance-series); strict Jensen gives the comparison because the clock is nondegenerate for $`t\gt 0`$ ([Meerschaert and Straka](#ref-meerschaert), Sections 2-3).
 
-For $`a>0`$, complete monotonicity and the Laplace transform $`p^{\tau-1}/(p^\tau+a)`$ give
+For $`a\gt 0`$, complete monotonicity and the Laplace transform $`p^{\tau-1}/(p^\tau+a)`$ give
 
 <a id="mittag-leffler-asymptotics"></a>
 
@@ -406,7 +406,7 @@ t(1-e^{-1})E_\tau(-at^\tau)
 In [covariance series (C4)](#covariance-series), the positive gap bounds the relevant denominators below by $`m\lambda_1(\mu)`$ and $`\lambda_1(\mu)`$, respectively. The total coefficient mass is $`\|f\|_2^{2m}`$, so [Mittag-Leffler asymptotics (C6)](#mittag-leffler-asymptotics) and dominated convergence prove [long-time limits (C5)](#long-time-limits). A nonzero coefficient makes each limit strictly positive.
 $`\square`$
 
-At $`m=1`$ the two covariances agree. They also agree at $`\tau=1`$, when the clock is deterministic and the exponential of the sum of coordinate eigenvalues $`\lambda_{k_j}(\mu)`$ factors. The displayed asymptotics concern fixed $`\tau<1`$ and are not uniform at that endpoint.
+At $`m=1`$ the two covariances agree. They also agree at $`\tau=1`$, when the clock is deterministic and the exponential of the sum of coordinate eigenvalues $`\lambda_{k_j}(\mu)`$ factors. The displayed asymptotics concern fixed $`\tau\lt 1`$ and are not uniform at that endpoint.
 
 <a id="truncating-expansion"></a>
 
@@ -482,14 +482,14 @@ $`\mathrm{He}_k'=k\mathrm{He}_{k-1}`$ and
 $`\mathrm{He}_{2n}(0)=(-1)^n(2n)!/(2^nn!)`$.
 These identities give [Gaussian weights (S1)](#gaussian-weights) directly and show that infinitely many coefficients are nonzero. The code compares these weights with those obtained from the interface calculation.
 
-For a benchmark that uses no interface roots, take independent standard normals $`Z_1,V`$ and set $`Z_2=\rho Z_1+\sqrt{1-\rho^2}V`$, with $`-1<\rho<1`$. The joint positivity event is a sector of angle $`\pi/2+\arcsin\rho`$ in the rotationally symmetric $`(Z_1,V)`$ plane. Subtracting the product of the marginal probabilities gives
+For a benchmark that uses no interface roots, take independent standard normals $`Z_1,V`$ and set $`Z_2=\rho Z_1+\sqrt{1-\rho^2}V`$, with $`-1\lt \rho\lt 1`$. The joint positivity event is a sector of angle $`\pi/2+\arcsin\rho`$ in the rotationally symmetric $`(Z_1,V)`$ plane. Subtracting the product of the marginal probabilities gives
 
 ```math
-\mathrm{Cov}(\mathbf{1}_{\{Z_1>0\}},\mathbf{1}_{\{Z_2>0\}})
+\mathrm{Cov}(\mathbf{1}_{\{Z_1\gt 0\}},\mathbf{1}_{\{Z_2\gt 0\}})
 =\frac{\arcsin\rho}{2\pi}.
 ```
 
-The endpoint cases follow by continuity. For stationary Ornstein–Uhlenbeck motion generated by $`-N_1/2`$, the correlation at operational time $`s`$ is $`e^{-s/2}`$. An inverse half-stable clock has density $`e^{-s^2/(4t)}/\sqrt{\pi t}`$ for $`s>0`$ ([Meerschaert and Straka](#ref-meerschaert), Section 2). Conditioning therefore gives, for $`m=2`$ and $`t>0`$,
+The endpoint cases follow by continuity. For stationary Ornstein–Uhlenbeck motion generated by $`-N_1/2`$, the correlation at operational time $`s`$ is $`e^{-s/2}`$. An inverse half-stable clock has density $`e^{-s^2/(4t)}/\sqrt{\pi t}`$ for $`s\gt 0`$ ([Meerschaert and Straka](#ref-meerschaert), Section 2). Conditioning therefore gives, for $`m=2`$ and $`t\gt 0`$,
 
 <a id="gaussian-quadratures"></a>
 
