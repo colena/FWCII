@@ -239,8 +239,7 @@ $`r_k^{(\mu)}=e_k^{(\mu)}/e_0^{(\mu)}`$
 are the normalised eigenfunctions of $`N_\mu`$
 defined in [ground-state transformation (B1)](#ground-state).
 Since $`r_0^{(\mu)}=1`$ and $`f`$ has mean zero,
-$`f_0=0`$.
-Since $`f_0=0`$, subtracting $`p_\mu`$ leaves the coefficients of eigenfunctions corresponding to positive eigenvalues unchanged. The [boundary-flux identity (B3)](#threshold-coefficients) therefore gives
+$`f_0=0`$. Subtracting $`p_\mu`$ leaves the coefficients of eigenfunctions corresponding to positive eigenvalues unchanged. The [boundary-flux identity (B3)](#threshold-coefficients) therefore gives
 
 <a id="threshold-coefficients"></a>
 
@@ -280,7 +279,7 @@ F_{\mathbf k}=0\ \text{if any }k_j=0,\qquad
 \sum_{\mathbf k}|F_{\mathbf k}|^2=\|f\|_2^{2m}.
 ```
 
-These are cylinder functions in the constructed countable product space. A  product eigenfunction $`R_{\mathbf k}^{(\mu)}`$  has eigenvalue $`\Lambda_{\mathbf k}(\mu)=\sum_{j=1}^m\lambda_{k_j}(\mu)`$; the number of active coordinates is distinct from this eigenvalue label.
+These are cylinder functions in the constructed countable product space. A product eigenfunction $`R_{\mathbf k}^{(\mu)}`$ has eigenvalue $`\Lambda_{\mathbf k}(\mu)=\sum_{j=1}^m\lambda_{k_j}(\mu)`$; the number of active coordinates is distinct from this eigenvalue label.
 
 Write $`u_{\rm sh}(t,x)`$ and $`u_{\rm ind}(t,x)`$  for the expected terminal value of $`F`$ starting from $`x`$. Conditional independence and the scalar clock transform yield
 
@@ -332,12 +331,12 @@ E_\tau[-t^\tau\lambda_k(\mu)/2]\right]^m.
 \end{aligned}
 ```
 
-The coefficients already computed at the interface are thus sufficient for every $`t\geq0`$. A shared clock acts on the sum of coordinate eigenvalues; independent clocks multiply the coordinate decay factors. This is an established inverse-clock mechanism ([Beghin, Macci and Ricciuti](#ref-beghin), Sections 1 and 4); the construction here  supplies the eigenfunctions and coefficients for the non-Gaussian interface family.
+The coefficients already computed at the interface are thus sufficient for every $`t\geq0`$. A shared clock acts on the sum of coordinate eigenvalues; independent clocks multiply the coordinate decay factors. This is an established inverse-clock mechanism ([Beghin, Macci and Ricciuti](#ref-beghin), Sections 1 and 4); the construction here supplies the eigenfunctions and coefficients for the non-Gaussian interface family.
 
 <a id="decay-theorem"></a>
 
 **Theorem (Decay of collective correlations).**
-For $`0<\mu\leq1`$, $`0<\tau<1`$, integers $`m\geq2`$ and nonzero real  $`f\in L^2(\nu_\mu)`$, such that
+For $`0<\mu\leq1`$, $`0<\tau<1`$, integers $`m\geq2`$ and nonzero real $`f\in L^2(\nu_\mu)`$, such that
 
 ```math
 \int_{-\infty}^\infty f(x)\nu_\mu(\mathrm{d}x)=0
@@ -372,6 +371,7 @@ With a shared clock, we first take its $`m`$th power and then average
 over the clock. With independent clocks, we first average and then
 take the power. Convexity compares these quantities, and the spectral
 gap controls their long-time limits.
+
 **Proof.**
 For deterministic operational time $`s`$, the one-coordinate covariance
 $`c(s)=\langle e^{-sN_\mu/2}f,f\rangle=\sum_{k\geq1}|f_k|^2e^{-s\lambda_k(\mu)/2}`$
@@ -382,7 +382,7 @@ C_{\rm sh}(t)=\mathbb{E}[c(E_t^{(\tau)})^m],\qquad
 C_{\rm ind}(t)=[\mathbb{E} c(E_t^{(\tau)})]^m.
 ```
 
-Invariance and Cauchy--Schwarz bound each absolute one-coordinate expectation by $`\|f\|_2^2`$, so these identities hold for the stated $`L^2`$ data. Tonelli gives [covariance series (C4)](#covariance-series); strict Jensen gives the comparison because the clock is nondegenerate for $`t>0`$ ([Meerschaert and Straka](#ref-meerschaert), Sections 2-3).
+Invariance and Cauchy–Schwarz bound each absolute one-coordinate expectation by $`\|f\|_2^2`$, so these identities hold for the stated $`L^2`$ data. Tonelli gives [covariance series (C4)](#covariance-series); strict Jensen gives the comparison because the clock is nondegenerate for $`t>0`$ ([Meerschaert and Straka](#ref-meerschaert), Sections 2-3).
 
 For $`a>0`$, complete monotonicity and the Laplace transform $`p^{\tau-1}/(p^\tau+a)`$ give
 
@@ -406,7 +406,7 @@ t(1-e^{-1})E_\tau(-at^\tau)
 In [covariance series (C4)](#covariance-series), the positive gap bounds the relevant denominators below by $`m\lambda_1(\mu)`$ and $`\lambda_1(\mu)`$, respectively. The total coefficient mass is $`\|f\|_2^{2m}`$, so [Mittag-Leffler asymptotics (C6)](#mittag-leffler-asymptotics) and dominated convergence prove [long-time limits (C5)](#long-time-limits). A nonzero coefficient makes each limit strictly positive.
 $`\square`$
 
-At $`m=1`$ the two covariances agree. They also agree at $`\tau=1`$, when the clock is deterministic and the exponential of  the sum of coordinate eigenvalues $`\lambda_{k_j}(\mu)`$ factors. The displayed asymptotics concern fixed $`\tau<1`$ and are not uniform at that endpoint.
+At $`m=1`$ the two covariances agree. They also agree at $`\tau=1`$, when the clock is deterministic and the exponential of the sum of coordinate eigenvalues $`\lambda_{k_j}(\mu)`$ factors. The displayed asymptotics concern fixed $`\tau<1`$ and are not uniform at that endpoint.
 
 <a id="truncating-expansion"></a>
 
@@ -431,7 +431,7 @@ To compute [covariance series (C4)](#covariance-series), retain $`1\leq k_j\leq 
 \end{aligned}
 ```
 
-For the first bound, an omitted multi-index has one coordinate exceeding $`N`$ and all other coordinates positive. For the second, bound the omitted one-coordinate sum and use $`a^m-b^m\leq m a^{m-1}(a-b)`$, where $`a`$ and $`b`$ are the full and truncated sums; here $`a\leq\|f\|_2^2E_\tau[-t^\tau\lambda_1(\mu)/2]`$. Monotonicity of the multipliers and Parseval identity  prove both bounds and uniform convergence of the increasing approximations for $`t\geq0`$.
+For the first bound, an omitted multi-index has one coordinate exceeding $`N`$ and all other coordinates positive. For the second, bound the omitted one-coordinate sum and use $`a^m-b^m\leq m a^{m-1}(a-b)`$, where $`a`$ and $`b`$ are the full and truncated sums; here $`a\leq\|f\|_2^2E_\tau[-t^\tau\lambda_1(\mu)/2]`$. Monotonicity of the multipliers and Parseval identity prove both bounds and uniform convergence of the increasing approximations for $`t\geq0`$.
 
 For threshold data, insert $`\|f\|_2^2=p_\mu(1-p_\mu)`$ and the interface coefficients. The constants in [long-time limits (C5)](#long-time-limits) have corresponding bounds: for the shared constant, multiply its omitted coefficient mass by $`2/[\Gamma(1-\tau)(\lambda_{N+1}(\mu)+(m-1)\lambda_1(\mu))]`$; for the independent constant, the omitted one-coordinate sum before taking its $`m`$th power is at most
 
@@ -446,7 +446,7 @@ These bounds use the exact spectrum and coefficients. Floating-point evaluations
 
 ### Numerical evaluation of threshold correlations
 
-We evaluate the threshold series for $`m=2`$, $`\tau=1/2`$, at the Gaussian endpoint $`\mu=1`$ and the deformed law $`\mu=1/2`$. The identity $`E_{1/2}(-z)=e^{z^2}\operatorname{erfc}(z)=\operatorname{erfcx}(z)`$ for $`z\geq0`$ permits stable evaluation.
+We evaluate the threshold series for $`m=2`$, $`\tau=1/2`$, at the Gaussian endpoint $`\mu=1`$ and the deformed law $`\mu=1/2`$. The identity $`E_{1/2}(-z)=e^{z^2}\mathrm{erfc}(z)=\mathrm{erfcx}(z)`$ for $`z\geq0`$ permits stable evaluation.
 
 The numerical calculation determines the roots $`\alpha_k(\mu)`$ of the characteristic equation $`\Delta_\mu(\alpha)=0`$ from the [characteristic equation](#interface-spectrum), the $`L^2(\gamma)`$-normalised eigenfunctions $`e_k^{(\mu)}`$ of the interface spectral theorem in the main manuscript (Section 2), and the coefficients $`f_k`$ from the [boundary-flux identity (B3)](#threshold-coefficients), using SciPy ([Virtanen et al.](#ref-scipy)). See [S.1](#gaussian-benchmark) for the independent Gaussian benchmark and [S.2](#numerical-diagnostics) for the complete procedure, truncation table, and interface diagnostics.
 
@@ -460,13 +460,13 @@ The curves and bands are divided by $`[p_\mu(1-p_\mu)]^2`$; the implementation r
 
 At $`t=1`$ and $`\mu=1`$, the absolute covariance errors are $`1.17\times10^{-4}`$ (shared) and $`5.94\times10^{-5}`$ (independent), within the estimated bounds $`3.56\times10^{-4}`$ and $`2.36\times10^{-4}`$, respectively. [S.2](#numerical-diagnostics) reports the dependence on the number of retained eigenfunctions and the numerical diagnostics.
 
-The expansion of the collective observation $`F`$ in the product eigenfunctions $`R_{\mathbf k}^{(\mu)}`$ defined in [product basis (B2)](#product-basis) reduces the correlation calculation to the scalar Mittag--Leffler factors in [covariance series (C4)](#covariance-series). The [truncation bounds (C7)](#truncation-bounds) control the contribution of the omitted terms. The gradient and divergence construct the conservative number operator, but this computation needs only its self-adjoint spectral realisation. The decay-rate distinction also holds for other reversible diffusions with a spectral gap; here it accompanies a computable non-Gaussian example of the constructed product chaos.
+The expansion of the collective observation $`F`$ in the product eigenfunctions $`R_{\mathbf k}^{(\mu)}`$ defined in [product basis (B2)](#product-basis) reduces the correlation calculation to the scalar Mittag–Leffler factors in [covariance series (C4)](#covariance-series). The [truncation bounds (C7)](#truncation-bounds) control the contribution of the omitted terms. The gradient and divergence construct the conservative number operator, but this computation needs only its self-adjoint spectral realisation. The decay-rate distinction also holds for other reversible diffusions with a spectral gap; here it accompanies a computable non-Gaussian example of the constructed product chaos.
 
 <a id="gaussian-benchmark"></a>
 
 ### S.1. Gaussian coefficients and independent benchmark
 
-At $`\mu=1`$, the equilibrium law is standard Gaussian, $`p_1=1/2`$, and the modes are $`r_k^{(1)}=\operatorname{He}_k/\sqrt{k!}`$. The threshold datum is $`f(x)=\mathbf{1}_{(0,\infty)}(x)-1/2`$. The [boundary-flux identity (B3)](#threshold-coefficients) gives
+At $`\mu=1`$, the equilibrium law is standard Gaussian, $`p_1=1/2`$, and the modes are $`r_k^{(1)}=\mathrm{He}_k/\sqrt{k!}`$. The threshold datum is $`f(x)=\mathbf{1}_{(0,\infty)}(x)-1/2`$. The [boundary-flux identity (B3)](#threshold-coefficients) gives
 
 <a id="gaussian-weights"></a>
 
@@ -478,18 +478,18 @@ f_{2n}=0\quad(n\geq1),\qquad
 ```
 
 Indeed $`e_0=1`$, $`e_0'=0`$ and $`\lambda_k=k`$, while
-$`\operatorname{He}_k'=k\operatorname{He}_{k-1}`$ and
-$`\operatorname{He}_{2n}(0)=(-1)^n(2n)!/(2^nn!)`$.
+$`\mathrm{He}_k'=k\mathrm{He}_{k-1}`$ and
+$`\mathrm{He}_{2n}(0)=(-1)^n(2n)!/(2^nn!)`$.
 These identities give [Gaussian weights (S1)](#gaussian-weights) directly and show that infinitely many coefficients are nonzero. The code compares these weights with those obtained from the interface calculation.
 
 For a benchmark that uses no interface roots, take independent standard normals $`Z_1,V`$ and set $`Z_2=\rho Z_1+\sqrt{1-\rho^2}V`$, with $`-1<\rho<1`$. The joint positivity event is a sector of angle $`\pi/2+\arcsin\rho`$ in the rotationally symmetric $`(Z_1,V)`$ plane. Subtracting the product of the marginal probabilities gives
 
 ```math
-\operatorname{Cov}(\mathbf{1}_{\{Z_1>0\}},\mathbf{1}_{\{Z_2>0\}})
+\mathrm{Cov}(\mathbf{1}_{\{Z_1>0\}},\mathbf{1}_{\{Z_2>0\}})
 =\frac{\arcsin\rho}{2\pi}.
 ```
 
-The endpoint cases follow by continuity. For stationary Ornstein--Uhlenbeck motion generated by $`-N_1/2`$, the correlation at operational time $`s`$ is $`e^{-s/2}`$. An inverse half-stable clock has density $`e^{-s^2/(4t)}/\sqrt{\pi t}`$ for $`s>0`$ ([Meerschaert and Straka](#ref-meerschaert), Section 2). Conditioning therefore gives, for $`m=2`$ and $`t>0`$,
+The endpoint cases follow by continuity. For stationary Ornstein–Uhlenbeck motion generated by $`-N_1/2`$, the correlation at operational time $`s`$ is $`e^{-s/2}`$. An inverse half-stable clock has density $`e^{-s^2/(4t)}/\sqrt{\pi t}`$ for $`s>0`$ ([Meerschaert and Straka](#ref-meerschaert), Section 2). Conditioning therefore gives, for $`m=2`$ and $`t>0`$,
 
 <a id="gaussian-quadratures"></a>
 
