@@ -105,9 +105,9 @@ class ReproductionTests(unittest.TestCase):
         self.assertLess(self.report["gaussian_coefficient_formula_error"], 1e-12)
         np.testing.assert_allclose(self.report["spectral"][0]["alpha"], np.arange(34), atol=1e-12)
 
-    def test_paper_section_6_4(self):
-        # Values transcribed from Section 6.4 (p. 20) of the bundled FINAL PDF.
-        # The paper displays three significant figures; compare at that precision.
+    def test_documented_numerical_evaluation(self):
+        # Values moved from v2 Section 6.4 into README.md#numerical-evaluation.
+        # The application displays three significant figures; compare at that precision.
         reference = json.loads((Path(__file__).resolve().parent / "reference" / "results.json").read_text())
         printed = {
             "shared_error": "1.17e-04", "independent_error": "5.94e-05",

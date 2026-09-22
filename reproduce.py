@@ -92,6 +92,8 @@ def write_reports(report):
         '',
         'Two coordinates; inverse-clock order 1/2; 32 retained positive modes.',
         '',
+        'Theory, proof, and truncation bounds: [README application](../README.md#collective-threshold-correlations).',
+        '',
         '![Shared and independent clock correlations](figures/collective_clocks.png)',
         '',
         'Both covariances are divided by [p_mu * (1 - p_mu)]^2 in the figure.',
