@@ -4,13 +4,13 @@ This repository contains the collective-threshold application of the interface s
 
 ## Main manuscript and this companion
 
-**Elena Boguslavskaya and Elina Shishkina. _Fractional Wiener chaos: Part 2. Interface Spectral Chaos._ Main manuscript.**
+**Elena Boguslavskaya and Elina Shishkina. _Fractional Wiener chaos: Part 2. Interface spectral chaos and decay of collective correlations._ (2026).**
 
-For the forthcoming arXiv revision, the main manuscript presents the interface spectral framework; the application **[Computing the decay of collective threshold correlations](#collective-threshold-correlations)** is maintained here. The complete application below was transferred from Section 6 of the supplied `v2FWCII_arxiv-FINAL.pdf` (22 September 2026 snapshot, pages 25-29). It includes all four subsections, the decay theorem and its proof, the truncation bounds, and the numerical example and figure.
+The paper is available as [arXiv:2609.13971](https://arxiv.org/abs/2609.13971). [Read the PDF](https://arxiv.org/pdf/2609.13971) · [DOI: 10.48550/arXiv.2609.13971](https://doi.org/10.48550/arXiv.2609.13971). As checked on 23 September 2026, the arXiv record lists [version 1](https://arxiv.org/abs/2609.13971v1), submitted on 12 September 2026.
 
-Cross-references have been adapted for GitHub: the definitions needed from the main manuscript are repeated, application equations use labels C1-C7, and citations link to a bibliography below. S.1 and S.2 supply the Gaussian benchmark and numerical diagnostics referenced by the application. References to this computation should point to this README, rather than to a Section 6 in the revised arXiv manuscript. Cite the authors and main manuscript title above for the spectral construction, and the repository version used for this companion application.
+This repository provides the complete companion application, **[Computing the decay of collective threshold correlations](#collective-threshold-correlations)**, with all four subsections, the decay theorem and its proof, the truncation bounds, and the numerical example and figure. The text was transferred from Section 6 of the supplied `v2FWCII_arxiv-FINAL.pdf` (22 September 2026 snapshot, pages 25-29); this local source snapshot is distinct from the version currently listed on arXiv.
 
-The [12 September manuscript snapshot](archive/fractional_wiener_chaos_II_2026-09-12.pdf) is retained **only as a historical archive**. Its longer subtitle, section numbers, and equation numbers do not describe the forthcoming revised manuscript. The main manuscript is being revised separately; this repository update does not edit it.
+Cross-references have been adapted for GitHub: the definitions needed from the paper are repeated, application equations use labels C1-C7, and citations link to a bibliography below. S.1 and S.2 supply the Gaussian benchmark and numerical diagnostics referenced by the application. Cite the arXiv paper for the spectral construction and the repository version used for this companion application. Links to this computation should point to this README, whose labels remain stable across manuscript versions.
 
 **Contents:** [Run the code](#quick-start) · [Tests](#tests) · [Full application](#collective-threshold-correlations) · [Gaussian benchmark (S.1)](#gaussian-benchmark) · [Diagnostics (S.2)](#numerical-diagnostics) · [References](#references) · [Consistency checks](PAPER_CONSISTENCY.md)
 
@@ -98,14 +98,12 @@ The expected threshold probabilities are approximately `0.5`, `0.696491311248`, 
 
 `reference/results.json` contains the original numerical reference produced with Python 3.12.13, NumPy 2.3.5, SciPy 1.17.0, and Matplotlib 3.10.8. `requirements.txt` pins those three direct numerical dependencies; pip resolves their transitive dependencies. Each fresh run records its actual versions in `outputs/results.json`.
 
-## Repository contents
+## Main repository files
 
 ```text
 collective-threshold-relaxation/
 ├── README.md
 ├── PAPER_CONSISTENCY.md
-├── archive/
-│   └── fractional_wiener_chaos_II_2026-09-12.pdf
 ├── LICENSE
 ├── requirements.txt
 ├── reproduce.py
